@@ -1,5 +1,4 @@
-import { useState } from "react";
-import "./App.css";
+﻿import { useState } from "react";
 
 function App() {
   const [token, setToken] = useState("");
@@ -45,19 +44,138 @@ function App() {
     }
   };
 
-  return (
-    <main className="app">
-      <section className="token-generator">
-        <h1>Secure Token Generator</h1>
+  const styles = {
+    app: {
+      minHeight: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      padding: "24px",
+      background:
+        "radial-gradient(circle at top left, #1e3a8a 0%, transparent 35%), radial-gradient(circle at bottom right, #312e81 0%, transparent 35%), #0f172a",
+      fontFamily: "Arial, sans-serif",
+      color: "#f8fafc",
+    },
 
-        <p className="description">
+    card: {
+      width: "100%",
+      maxWidth: "560px",
+      padding: "40px",
+      background: "#0f172a",
+      border: "1px solid #475569",
+      borderRadius: "20px",
+      boxShadow: "0 25px 60px rgba(0, 0, 0, 0.35)",
+    },
+
+    heading: {
+      margin: "0",
+      textAlign: "center",
+      fontSize: "32px",
+      fontWeight: "700",
+      color: "#ffffff",
+      textShadow: "0 2px 12px rgba(59, 130, 246, 0.4)",
+    },
+
+    description: {
+      margin: "12px 0 35px",
+      textAlign: "center",
+      color: "#cbd5e1",
+      fontSize: "15px",
+      lineHeight: "1.6",
+    },
+
+    lengthSection: {
+      marginBottom: "28px",
+    },
+
+    lengthHeader: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: "14px",
+      fontSize: "15px",
+      color: "#e2e8f0",
+    },
+
+    lengthValue: {
+      minWidth: "42px",
+      padding: "5px 10px",
+      textAlign: "center",
+      background: "#1e293b",
+      border: "1px solid #475569",
+      borderRadius: "8px",
+      color: "#60a5fa",
+      fontWeight: "700",
+    },
+
+    slider: {
+      width: "100%",
+      cursor: "pointer",
+      accentColor: "#3b82f6",
+    },
+
+    generateButton: {
+      width: "100%",
+      padding: "14px",
+      border: "none",
+      borderRadius: "10px",
+      background: "#2563eb",
+      color: "#ffffff",
+      fontSize: "16px",
+      fontWeight: "600",
+      cursor: "pointer",
+    },
+
+    tokenSection: {
+      display: "flex",
+      gap: "10px",
+      marginTop: "24px",
+      padding: "12px",
+      background: "#020617",
+      border: "1px solid #475569",
+      borderRadius: "12px",
+    },
+
+    tokenInput: {
+      flex: "1",
+      minWidth: "0",
+      padding: "12px",
+      border: "none",
+      outline: "none",
+      background: "transparent",
+      color: "#60a5fa",
+      fontFamily: "Courier New, monospace",
+      fontSize: "15px",
+      letterSpacing: "1px",
+    },
+
+    copyButton: {
+      padding: "10px 18px",
+      border: "none",
+      borderRadius: "8px",
+      background: "#334155",
+      color: "#ffffff",
+      fontWeight: "600",
+      cursor: "pointer",
+    },
+  };
+
+  return (
+    <main style={styles.app}>
+      <section style={styles.card}>
+        <h1 style={styles.heading}>Secure Token Generator</h1>
+
+        <p style={styles.description}>
           Generate a cryptographically secure random token.
         </p>
 
-        <div className="length-section">
-          <div className="length-header">
+        <div style={styles.lengthSection}>
+          <div style={styles.lengthHeader}>
             <label htmlFor="token-length">Token Length</label>
-            <span>{tokenLength}</span>
+
+            <span style={styles.lengthValue}>
+              {tokenLength}
+            </span>
           </div>
 
           <input
@@ -66,6 +184,7 @@ function App() {
             min="8"
             max="32"
             value={tokenLength}
+            style={styles.slider}
             onChange={(event) =>
               setTokenLength(Number(event.target.value))
             }
@@ -73,23 +192,24 @@ function App() {
         </div>
 
         <button
-          className="generate-button"
+          style={styles.generateButton}
           onClick={generateToken}
         >
           Generate
         </button>
 
         {token && (
-          <div className="token-section">
+          <div style={styles.tokenSection}>
             <input
               type="text"
               value={token}
               readOnly
               aria-label="Generated token"
+              style={styles.tokenInput}
             />
 
             <button
-              className="copy-button"
+              style={styles.copyButton}
               onClick={copyToken}
             >
               {isCopied ? "Copied!" : "Copy"}
